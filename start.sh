@@ -1,6 +1,5 @@
 #!/bin/sh
 UBUNTUPATH=/data/local/ubuntu
-chroot $UBUNTUPATH /bin/su - root <<'EOF'
 
 # Fix setuid issue
 mount -o remount,dev,suid /data
@@ -15,6 +14,8 @@ mount -t tmpfs -o size=256M tmpfs $UBUNTUPATH/dev/shm
 
 # Mount sdcard
 mount --bind /sdcard $UBUNTUPATH/sdcard
+
+chroot $UBUNTUPATH /bin/su - root <<'EOF'
 
 # Start ssh server
 echo "Starting sshd..."
