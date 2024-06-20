@@ -49,7 +49,7 @@ usermod -G 3003 -a root
 # Update and install pkgs
 apt update && apt upgrade -y
 ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
-DEBIAN_FRONTEND=noninteractive apt install sudo git locales openssh-client openssh-server -y
+DEBIAN_FRONTEND=noninteractive apt install sudo git nano locales openssh-client openssh-server -y
 locale-gen en_US.UTF-8
 
 # Create user shekhawat2
