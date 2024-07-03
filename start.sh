@@ -10,6 +10,11 @@ mount --bind /proc $UBUNTUPATH/proc
 mount -t devpts devpts $UBUNTUPATH/dev/pts
 
 # /dev/shm for Electron apps
+if [ ! -d $UBUNTUPATH/dev/shm ]; then
+mkdir $UBUNTUPATH/dev/shm
+echo "Create shm"
+fi
+chmod 777 $UBUNTUPATH/dev/shm
 mount -t tmpfs -o size=256M tmpfs $UBUNTUPATH/dev/shm
 
 # Mount sdcard

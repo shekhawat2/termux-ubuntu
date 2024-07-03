@@ -19,6 +19,7 @@ rm -rf $ROOTFSFILE
 # Create mount points
 mkdir $UBUNTUPATH/sdcard
 mkdir $UBUNTUPATH/dev/shm
+chmod 777 $UBUNTUPATH/dev/shm
 
 # Fix setuid issue
 mount -o remount,dev,suid /data
