@@ -1,4 +1,7 @@
 #!/bin/sh
+unset LD_PRELOAD
+export LD_PRELOAD=
+
 UBUNTUPATH=/data/local/ubuntu
 
 # Fix setuid issue
@@ -21,6 +24,7 @@ mount -t tmpfs -o size=256M tmpfs $UBUNTUPATH/dev/shm
 mount --bind /sdcard $UBUNTUPATH/sdcard
 
 chroot $UBUNTUPATH /bin/su - root <<'EOF'
+#chroot $UBUNTUPATH /lib/ld-linux-aarch64.so.1 --library-path /lib/aarch64-linux-gnu:/lib /bin/su - root <<'EOF'
 
 # Start ssh server
 echo "Starting sshd..."

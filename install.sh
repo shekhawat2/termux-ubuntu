@@ -1,10 +1,13 @@
 #!/bin/sh
 
+unset LD_PRELOAD
+export LD_PRELOAD=
+
 # The path of Ubuntu rootfs
 UBUNTUPATH="/data/local/ubuntu"
 mkdir $UBUNTUPATH -p
 
-ROOTFSURL="https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04-base-arm64.tar.gz"
+ROOTFSURL="https://cdimage.ubuntu.com/ubuntu-base/releases/questing/release/ubuntu-base-25.10-base-arm64.tar.gz"
 ROOTFSFILE="$(basename $ROOTFSURL)"
 
 # Download rootfs
@@ -37,6 +40,7 @@ mount --bind /sdcard $UBUNTUPATH/sdcard
 
 # chroot into Ubuntu & Setup
 chroot $UBUNTUPATH /bin/su - root <<'EOF'
+#chroot $UBUNTUPATH /lib/ld-linux-aarch64.so.1 --library-path /lib/aarch64-linux-gnu:/lib /bin/su - root <<'EOF'
 
 # Net fixes
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
